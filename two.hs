@@ -21,11 +21,11 @@ drop' 1 (x:xs) = xs
 drop' n (x:xs) = drop' (n-1) xs
 --pembatas
 
-fst' x = x
+fst' (a, b) = a
 
 --pembatas
 
-snd' x = x
+snd' (a,b) = b
 
 --pembatas
 
@@ -39,7 +39,6 @@ filter' x = x
 
 delete' 0 (x:xs) = (x:xs)
 delete' 1 (x:xs) = xs
-
 
 --pembatas
 
