@@ -14,11 +14,14 @@ null' _ = False
 
 take' 0 (x:xs) = []
 take' 1 (x:xs) = [x]
+take' n (x:xs) = x : take' (n-1) xs
+
 --pembatas
 
 drop' 0 (x:xs) = (x:xs)
 drop' 1 (x:xs) = xs
 drop' n (x:xs) = drop' (n-1) xs
+
 --pembatas
 
 fst' (a,b) = a
@@ -29,7 +32,7 @@ snd' (a,b) = b
 
 --pembatas
 
-map' x = x
+map' (_) = []
 
 --pembatas
 
@@ -37,10 +40,7 @@ filter' x = x
 
 --pembatas
 
-delete' x=x
-
-
--- delete n, jika ada n dalam (x:xs) maka n nya diapus
+delete' _ [] = []
 
 --pembatas
 
@@ -95,13 +95,12 @@ length' (x:xs) = 1 + length' xs
 
 reverse' [a] = [a]
 reverse' [] = []
-reverse'
 
 --pembatas
 
 last' [x] = x
 last' (x:xs) = last' xs
--- last' [1,2,3] = last' [2,3] = last' [3]
+
 --pembatas
 
 tail' (x:xs) = xs
