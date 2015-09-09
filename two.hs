@@ -21,7 +21,7 @@ drop' 1 (x:xs) = xs
 drop' n (x:xs) = drop' (n-1) xs
 --pembatas
 
-fst' (a, b) = a
+fst' (a,b) = a
 
 --pembatas
 
@@ -37,8 +37,10 @@ filter' x = x
 
 --pembatas
 
-delete' 0 (x:xs) = (x:xs)
-delete' 1 (x:xs) = xs
+delete' x=x
+
+
+-- delete n, jika ada n dalam (x:xs) maka n nya diapus
 
 --pembatas
 
@@ -54,7 +56,7 @@ foldl1' x = x
 
 --pembatas
 
-zip' x = x
+zip' x=x
 
 --pembatas
 
@@ -82,7 +84,8 @@ notElem' x = x
 
 --pembatas
 
-head' x = x
+head' [x] = x
+head' (x:xs) = x
 
 --pembatas
 
@@ -90,27 +93,37 @@ length' [] = 0
 length' (x:xs) = 1 + length' xs
 --pembatas
 
-reverse' x = x
+reverse' [a] = [a]
+reverse' [] = []
+reverse'
 
 --pembatas
 
-last' x = x
+last' [x] = x
+last' (x:xs) = last' xs
+-- last' [1,2,3] = last' [2,3] = last' [3]
+--pembatas
+
+tail' (x:xs) = xs
 
 --pembatas
 
-tail' x = x
+init' [n] = []
+init' (x:xs) = x : init' xs
 
 --pembatas
 
-init' x = x
+max' x y
+  | x < y = y
+  | x > y = x
+  | x == y = x
 
 --pembatas
 
-max' x = x
-
---pembatas
-
-min' x = x
+min' x y
+  | x < y = x
+  | y < x = y
+  | x == y = x
 
 --pembatas
 
@@ -138,11 +151,13 @@ zip3' x = x
 
 --pembatas
 
-sum' x = x
+sum' [] = 0
+sum' (x:xs) = x + sum' xs
 
 --pembatas
 
-product' x = x
+product' [] = 1
+product' (x:xs) = x * product' xs
 
 --pembatas
 
@@ -182,8 +197,7 @@ any' x = x
 
 --pembatas
 
-insert' x = x
-
+insert' n [] = [n]
 --pembatas
 
 zipWith3' x = x
@@ -236,7 +250,7 @@ partition' x = x
 
 --pembatas
 
-replicate' x = x
+replicate' x=x
 
 --pembatas
 -- First Assignment
