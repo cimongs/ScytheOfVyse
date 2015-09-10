@@ -32,7 +32,7 @@ snd' (a,b) = b
 
 --pembatas
 
-map' (_) = []
+map' x = x
 
 --pembatas
 
@@ -41,10 +41,16 @@ filter' x = x
 --pembatas
 
 delete' _ [] = []
+delete' n (x:xs)
+  | n == x = xs
+  | otherwise =  x : delete' n xs
 
 --pembatas
 
-deleteAll' x = x
+deleteAll' _ [] = []
+deleteAll' n (x:xs)
+  | n /= x = xs
+  | otherwise = x : deleteAll' n xs
 
 --pembatas
 
@@ -56,7 +62,11 @@ foldl1' x = x
 
 --pembatas
 
-zip' x=x
+zip' [] [] = []
+zip' [x] [y] = [(x,y)]
+zip' [x,y,z] [a,b,c] = [(x,a),(y,b),(z,c)]
+
+-- stuck
 
 --pembatas
 
@@ -76,11 +86,16 @@ scanl1' x = x
 
 --pembatas
 
-elem' x = x
-
+elem' n(x:xs)
+  |n == x = True
+  |n /= x = elem' n xs
+elem' _ [] = False
 --pembatas
 
-notElem' x = x
+notElem' n(x:xs)
+  |n== x = False
+  |otherwise = notElem' n xs
+notElem' _[] = True
 
 --pembatas
 
@@ -95,6 +110,8 @@ length' (x:xs) = 1 + length' xs
 
 reverse' [a] = [a]
 reverse' [] = []
+
+-- stuck
 
 --pembatas
 
@@ -130,11 +147,14 @@ concat' x = x
 
 --pembatas
 
-intersperse' x = x
+intersperse' _ [] = []
+intersperse' _ [x] = [x]
+intersperse' n (x:xs) = x : n : intersperse' n xs
 
 --pembatas
 
-intercalate' x = x
+intercalate' [a] [(x:xs)] = (x:xs)
+--stuck
 
 --pembatas
 
@@ -197,6 +217,10 @@ any' x = x
 --pembatas
 
 insert' n [] = [n]
+insert' n(x:xs)
+  |n == x = n : (x:xs)
+  |otherwise = x : insert' n xs
+
 --pembatas
 
 zipWith3' x = x
