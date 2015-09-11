@@ -32,7 +32,9 @@ snd' (a,b) = b
 
 --pembatas
 
-map' x = x
+map' f [] = []
+map' f [x] = [(f)x]
+map' f (x:xs) = f x : map' f xs
 
 --pembatas
 
@@ -49,9 +51,8 @@ delete' n (x:xs)
 
 deleteAll' _ [] = []
 deleteAll' n (x:xs)
-  | n /= x = xs
   | otherwise = x : deleteAll' n xs
-
+-- stuck
 --pembatas
 
 foldl' x = x
@@ -74,7 +75,10 @@ zipWith' x = x
 
 --pembatas
 
-nth' x = x
+nth' (x:xs) n
+  | n == 0 = x
+
+-- stuck
 
 --pembatas
 
@@ -110,8 +114,7 @@ length' (x:xs) = 1 + length' xs
 
 reverse' [a] = [a]
 reverse' [] = []
-
--- stuck
+reverse' (x:xs) = reverse' xs ++ [x]
 
 --pembatas
 
