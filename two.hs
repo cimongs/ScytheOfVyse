@@ -22,7 +22,7 @@ drop' 0 (x:xs) = (x:xs)
 drop' 1 (x:xs) = xs
 drop' n (x:xs) = drop' (n-1) xs
 
---pembatas
+ --pembatas
 
 fst' (a,b) = a
 
