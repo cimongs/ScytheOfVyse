@@ -67,14 +67,15 @@ foldl1' x = x
 
 --pembatas
 
-zip' [] [] = []
-zip' [x] [y] = [(x,y)]
-
--- stuck
+zip' [] _ = []
+zip' _ [] = []
+zip' (x:xs)(y:ys) = (x,y) : zip' (xs) (ys)
 
 --pembatas
 
-zipWith' x = x
+zipWith' (f) _ [] = []
+zipWith' (f) [] _ = []
+zipWith' (f) (x:xs)(y:ys) = f x y : zipWith' f (xs)(ys)
 
 --pembatas
 
@@ -148,6 +149,7 @@ min' x y
 
 concat' [] = []
 concat' [[a]] = [a]
+-- stuck
 --pembatas
 
 intersperse' _ [] = []
@@ -173,7 +175,10 @@ or' [] = False
 
 --pembatas
 
-zip3' x = x
+zip3' [] _ _ = []
+zip3' _ [] _ = []
+zip3' _ _ [] = []
+zip3' (x:xs) (a:as) (b:bs) = (x,a,b) : zip3' xs as bs
 
 --pembatas
 
