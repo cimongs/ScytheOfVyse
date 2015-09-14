@@ -38,7 +38,7 @@ map' f (x:xs) = f x : map' f xs
 
 --pembatas
 
-filter' x = x
+filter' (a) [] = []
 
 --pembatas
 
@@ -51,6 +51,8 @@ delete' n (x:xs)
 
 deleteAll' _ [] = []
 deleteAll' n (x:xs)
+  | n == x = xs
+  | n == x = xs
   | otherwise = x : deleteAll' n xs
 -- stuck
 --pembatas
@@ -146,8 +148,8 @@ min' x y
 
 --pembatas
 
-concat' x = x
-
+concat' [] = []
+concat' [[a]] = [a]
 --pembatas
 
 intersperse' _ [] = []
@@ -157,15 +159,19 @@ intersperse' n (x:xs) = x : n : intersperse' n xs
 --pembatas
 
 intercalate' [a] [(x:xs)] = (x:xs)
---stuck
+intercalate' (x:xs) [(a:as)] = (a:as)
 
 --pembatas
 
-and' x = x
+and' [True] = True
+and' [False] = False
+and' [] = True
 
 --pembatas
 
-or' x = x
+or' [True] = True
+or' [False] = False
+or' [] = False
 
 --pembatas
 
@@ -222,7 +228,8 @@ any' x = x
 insert' n [] = [n]
 insert' n(x:xs)
   |n == x = n : (x:xs)
-  |otherwise = x : insert' n xs
+  |n < x = n : (x:xs)
+  |otherwise =  x : insert' n xs
 
 --pembatas
 
