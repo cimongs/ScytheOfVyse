@@ -38,7 +38,10 @@ map' f (x:xs) = f x : map' f xs
 
 --pembatas
 
-filter' (a) [] = []
+filter' a [] = []
+filter' a (x:xs)
+  | a x == True = x : filter' a xs
+  | otherwise = filter' a xs
 
 --pembatas
 
@@ -51,10 +54,9 @@ delete' n (x:xs)
 
 deleteAll' _ [] = []
 deleteAll' n (x:xs)
-  | n == x = xs
-  | n == x = xs
+  | n == x = deleteAll' n xs
   | otherwise = x : deleteAll' n xs
--- stuck
+
 --pembatas
 
 foldl' x = x
@@ -67,7 +69,6 @@ foldl1' x = x
 
 zip' [] [] = []
 zip' [x] [y] = [(x,y)]
-zip' [x,y,z] [a,b,c] = [(x,a),(y,b),(z,c)]
 
 -- stuck
 
@@ -77,10 +78,8 @@ zipWith' x = x
 
 --pembatas
 
-nth' (x:xs) n
-  | n == 0 = x
-
--- stuck
+nth' (x:xs) 0 = x
+nth' (x:xs) n = nth' xs (n-1)
 
 --pembatas
 
@@ -131,7 +130,6 @@ tail' (x:xs) = xs
 
 init' [n] = []
 init' (x:xs) = x : init' xs
-
 --pembatas
 
 max' x y
@@ -221,7 +219,7 @@ all' x = x
 
 --pembatas
 
-any' x = x
+any' a [] = []
 
 --pembatas
 
@@ -255,11 +253,13 @@ maximum' x = x
 
 --pembatas
 
-inits' x = x
+inits' [] = [[]]
 
 --pembatas
 
-tails' x = x
+tails' [] = [[]]
+tails' [a] = [[a],[]]
+tails' (x:xs) = (x:xs) : tails' xs
 
 --pembatas
 
@@ -283,7 +283,8 @@ partition' x = x
 
 --pembatas
 
-replicate' x=x
+replicate' n (x:xs) = x
+
 
 --pembatas
 -- First Assignment
